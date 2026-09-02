@@ -103,11 +103,13 @@ figure.venn figcaption{font-family:var(--data);font-size:12px;letter-spacing:.05
 .grid2 p{max-width:none}
 
 table{border-collapse:collapse;width:100%;font-size:15.5px;margin:0 0 10px}
-th,td{text-align:left;padding:9px 14px 9px 0;border-bottom:1px solid var(--rule-soft);
+th,td{text-align:left;padding:9px 15px;border-bottom:1px solid var(--rule-soft);
   vertical-align:top}
+th:first-child,td:first-child{padding-left:0}
+th:last-child,td:last-child{padding-right:0}
 th{font-family:var(--data);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
   color:var(--muted);font-weight:400;border-bottom-color:var(--rule)}
-td.n,th.n{text-align:right;font-family:var(--data);font-size:14px;padding-right:0}
+td.n,th.n{text-align:right;font-family:var(--data);font-size:14px}
 caption{caption-side:bottom;text-align:left;font-size:13px;color:var(--muted);
   padding-top:8px;line-height:1.5}
 
@@ -135,9 +137,9 @@ footer p{max-width:78ch}
 .tw table{min-width:min(100%,620px)}
 tr.hl td{background:#F6EEEC}
 tr.tot td{font-weight:600;border-bottom:1px solid var(--rule)}
-td.num,th.num{text-align:right;font-family:var(--data);font-size:14px;
-  white-space:nowrap;padding-right:0}
-th.num{font-family:var(--data)}
+td.num,th.num{text-align:right}
+td.num{font-family:var(--data);font-size:14px;white-space:nowrap}
+th.num{font-family:var(--data);letter-spacing:.05em}
 .tnote{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0 0 26px;max-width:78ch}
 .grp th{border-bottom:none;padding-bottom:2px}
 
@@ -146,3 +148,6 @@ ul.plain li{margin-bottom:10px;color:var(--ink-2)}
 code{font-family:var(--data);font-size:.86em;background:var(--paper-2);
   padding:1px 5px;border:1px solid var(--rule-soft)}
 td code{background:none;border:none;padding:0;font-size:.92em}
+
+/* first column holds a short label (model slug); do not wrap it */
+table.nw1 td:first-child,table.nw1 th:first-child{white-space:nowrap}

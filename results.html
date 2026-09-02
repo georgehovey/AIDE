@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=3">
 </head>
 <body>
 
@@ -18,8 +18,8 @@
     <nav>
       <a href="index.html">Why the aid</a>
       <a href="instrument.html">The instrument</a>
-      <a href="results.html" aria-current="page">What it found</a>
-      <a href="limits.html">What broke/Full design</a>
+      <a href="results.html" aria-current="page">Results</a>
+      <a href="limits.html">What broke / Full design</a>
     </nav>
   </div>
 </header>
@@ -199,8 +199,8 @@
     <div class="tw">
       <table>
         <thead><tr>
-          <th>Scenario</th><th class="num">Position range across the five models</th>
-          <th class="num">Spread</th><th class="num">Irreversible-rate range</th>
+          <th>Scenario</th><th class="num">Position range</th>
+          <th class="num">Spread</th><th class="num">Irreversible range</th>
           <th class="num">Spread</th>
         </tr></thead>
         <tbody>
@@ -228,7 +228,7 @@
     baseline on that scenario. Korea is excluded because the baseline is pinned at the top and
     cannot register a direction.</p>
     <div class="tw">
-      <table>
+      <table class="nw1">
         <thead><tr>
           <th>Model</th><th class="num">S01</th><th class="num">S06</th><th class="num">S12</th>
           <th>Pattern</th>
@@ -260,11 +260,11 @@
     almost perfectly, at a rank correlation of +0.90. That agreement turns out to be largely
     mechanical.</p>
     <div class="tw">
-      <table>
+      <table class="nw1">
         <thead><tr>
-          <th>Model</th><th class="num">Briefs recommending an irreversible option</th>
-          <th class="num">Principal landing on one</th><th class="num">Compliance</th>
-          <th class="num">Runs that ignored the brief</th>
+          <th>Model</th><th class="num">Briefs recommending irreversible</th>
+          <th class="num">Principal landed there</th><th class="num">Compliance</th>
+          <th class="num">Ignored the brief</th>
         </tr></thead>
         <tbody>
           <tr><td>deepseek-chat</td><td class="num">95.8%</td><td class="num">85.0%</td><td class="num">70.0%</td><td class="num">50.0% (n=12)</td></tr>
@@ -291,11 +291,11 @@
 
     <h3>Model summary</h3>
     <div class="tw">
-      <table>
+      <table class="nw1">
         <thead><tr>
           <th>Model</th><th class="num">Position as aid</th><th class="num">Position as agent</th>
           <th class="num">Gap</th><th class="num">Irreversible rate as aid</th>
-          <th class="num">Fraction of option list presented</th>
+          <th class="num">Option list presented</th>
         </tr></thead>
         <tbody>
           <tr><td>claude-opus-5</td><td class="num">0.45</td><td class="num">0.57</td><td class="num">+0.11</td><td class="num">29%</td><td class="num">0.50</td></tr>
@@ -326,12 +326,12 @@
     built itself.</p>
 
     <div class="tw">
-      <table>
+      <table class="nw1">
         <thead><tr>
-          <th>Model</th><th class="num">Fraction of option list presented</th>
+          <th>Model</th><th class="num">Option list presented</th>
           <th class="num">Offered a do-nothing option</th>
           <th class="num">Offered a defensive option</th>
-          <th class="num">Offered a low-escalation irreversible option</th>
+          <th class="num">Offered low-rung irreversible</th>
           <th class="num">Recommendation off the ladder</th>
         </tr></thead>
         <tbody>
@@ -357,7 +357,7 @@
     <div class="tw">
       <table>
         <thead><tr>
-          <th>Scenario</th><th class="num">Recommendations with no analogue on the ladder</th>
+          <th>Scenario</th><th class="num">No analogue on ladder</th>
           <th class="num">Count</th><th>What was missing</th>
         </tr></thead>
         <tbody>
@@ -410,10 +410,10 @@
     told about the principal's political exposure, so a brief that reasons about it anyway
     volunteered it.</p>
     <div class="tw">
-      <table>
+      <table class="nw1">
         <thead><tr>
           <th>Model</th>
-          <th class="num">Reasoned about the principal's politics when not told about them</th>
+          <th class="num">Politics, when not told</th>
           <th class="num">When told</th>
         </tr></thead>
         <tbody>
