@@ -124,3 +124,25 @@ footer p{max-width:78ch}
   ol.fn>li{padding-left:44px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ---------- glossary blocks ---------- */
+.gloss{background:var(--paper-2);border:1px solid var(--rule-soft);padding:14px 20px;
+  margin:0 0 8px;font-size:16.5px;color:var(--ink-2);max-width:80ch}
+.gloss b{color:var(--ink);font-weight:600}
+
+/* ---------- data tables ---------- */
+.tw{overflow-x:auto;margin:0 0 6px;-webkit-overflow-scrolling:touch}
+.tw table{min-width:min(100%,620px)}
+tr.hl td{background:#F6EEEC}
+tr.tot td{font-weight:600;border-bottom:1px solid var(--rule)}
+td.num,th.num{text-align:right;font-family:var(--data);font-size:14px;
+  white-space:nowrap;padding-right:0}
+th.num{font-family:var(--data)}
+.tnote{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0 0 26px;max-width:78ch}
+.grp th{border-bottom:none;padding-bottom:2px}
+
+ul.plain{padding-left:20px;margin:0 0 18px;max-width:72ch}
+ul.plain li{margin-bottom:10px;color:var(--ink-2)}
+code{font-family:var(--data);font-size:.86em;background:var(--paper-2);
+  padding:1px 5px;border:1px solid var(--rule-soft)}
+td code{background:none;border:none;padding:0;font-size:.92em}

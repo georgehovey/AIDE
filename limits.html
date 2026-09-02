@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What broke, and the full design — AIDE</title>
+<meta name="description" content="The instrument AIDE would be without constraints, the nine defects found in building it, and the assumptions that would break the findings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="mark" href="index.html">AIDE <span>AI-Informed Decision Evaluation</span></a>
+    <nav>
+      <a href="index.html">Why the aid</a>
+      <a href="instrument.html">The instrument</a>
+      <a href="results.html">What it found</a>
+      <a href="limits.html" aria-current="page">What broke</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Defects, assumptions, and the next version</p>
+    <h1>What broke, and<br>the full design</h1>
+    <p class="lede">The full design describes how I would build the next iteration of the
+    evaluation if I didn't face constraints.</p>
+    <p>Running AIDE for the first time produces two kinds of findings. What it measured is on the
+    <a href="results.html">Results page</a>. What it taught about building instruments of this
+    class is here, along with the version that should exist.</p>
+  </div>
+</div>
+
+<div class="jump">
+  <div class="wrap">
+    <a href="#full-design"><i>01</i> The full design</a>
+    <a href="#broke"><i>02</i> What broke in AIDE 1.0</a>
+    <a href="#falsify"><i>03</i> What would break this</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════ 01 -->
+<section id="full-design" class="s1">
+  <div class="wrap">
+    <h2>Part 1 — The full design</h2>
+    <p>AIDE 1.0 is what one analyst could build and run in the time available. It left a great
+    deal on the table, and the descoping was deliberate — the cuts below were made for reasons of
+    expediency, talent, or resources. None of them is an essential feature of the design, and
+    each is recoverable. What follows is what the instrument would look like if the constraints
+    were removed.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>Element</th><th>AIDE 1.0</th><th>Full design</th><th>What it buys</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Principal</td><td>Fixed weak model scaffold</td><td>Human decision-makers; failing that, a suite of principals</td><td>External validity</td></tr>
+          <tr><td>Scenarios</td><td>4 items, single decision point</td><td>Dozens, with full roads to crisis</td><td>Separates aid effect from scenario effect</td></tr>
+          <tr><td>Option set</td><td>7–9 authored options</td><td>No menu; a dynamic grader scores free action</td><td>Removes the menu as a confound</td></tr>
+          <tr><td>Play</td><td>Single turn</td><td>Multi-turn, multi-agent</td><td>Prior updating; adversary representation</td></tr>
+          <tr><td>Objective</td><td>Two national-interest horizons plus a personal term</td><td>Adds a global-welfare term</td><td>Detects winning the war and losing the world</td></tr>
+          <tr><td>Ends</td><td>Stated in commander's intent</td><td>Discovered by the aid</td><td>Tests strategic judgment, not optimization</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Run it with human decision-makers</h3>
+    <p>The most important unimplemented step. The plausible route is incorporating AIDE into
+    strategic wargames or exercises and giving human players the aid, rather than recruiting
+    subjects for an artificial task.</p>
+    <p>The downside of this is that humans are variant, so the mechanism would cease to be a
+    benchmark. The two designs answer different questions and both are needed. The fixed scaffold
+    gives a repeatable score; human players provide the best evaluation of how the models
+    influence actual leadership decisions.</p>
+    <p>The secondary benefit creates a virtuous feedback loop: human play generates the data
+    needed to calibrate the scaffold, by using human runs to train AIDE on how decision-makers
+    actually act and what they value.</p>
+
+    <h3>Stronger principal</h3>
+    <p>AIDE 1.0 deliberately flattened the decision-maker to suppress noise and widen the
+    contrast between aid models. That choice provided sensitivity at the cost of realism: the
+    scaffold is a less capable and less idiosyncratic reasoner than any leader who would actually
+    use one of these tools. Three directions, in ascending cost:</p>
+    <ul class="plain">
+      <li><strong>A stronger scaffold.</strong> The current principal follows the aid's specific
+      recommendation about 60% of the time. A more capable principal might resist a brief this
+      one accepts, and whether the findings survive that is unknown.</li>
+      <li><strong>Emulated decision-makers.</strong> Agents built to model the decision style of
+      specific real leaders. Computationally expensive and it adds variables, but it is the
+      closest available proxy for the real-world question of what these aids would do in a
+      particular seat.</li>
+      <li><strong>A suite of principals.</strong> Real decision aids get used by many different
+      people. Randomizing across a set of decision-making styles is a more robust test of an
+      aid's general utility and controls for distortion introduced by any single scaffold. This
+      is also the cheapest of the three and the most immediately useful.</li>
+    </ul>
+
+    <h3>More, more robust scenarios</h3>
+    <p>Four items were enough to show that scenario effects frequently exceed inter-model
+    variance. Some of that is an artifact of item construction and can be fixed. Some of it is
+    real: human staff also perform variably across scenarios, and a design that suppressed
+    scenario effects would be measuring something that does not exist.</p>
+    <p>Making scenarios more robust will increase their realism and give the aids more grit to
+    reason on. Adding breadth will make it so the aid effects can be separated from
+    aid-by-scenario interaction.</p>
+    <ul class="plain">
+      <li>Substantially greater complexity in each item.</li>
+      <li>Full roads to crisis rather than a single decision point dropped into a described
+      situation.</li>
+      <li>Background the decision rests on: strategic environment, economic data, relevant
+      history, force structures.</li>
+      <li>Third parties with their own interests. No conflict is bilateral. AIDE 1.0 includes
+      allied considerations in the constraint sets, but a game world populated with dynamic
+      actors enlarges the decision space in the direction reality runs.</li>
+    </ul>
+
+    <h3>Dynamic options</h3>
+    <p>The enumerated option set is the largest measurement artifact in the current design. Seven
+    to nine authored options of graded escalatory potential shape what the principal does, and
+    D-09 demonstrates how sharply a single missing option can distort an item.</p>
+    <p>The replacement is a dynamic grader: remove the menu, let the principal act freely, and
+    score the action against a multi-dimensional escalation surface that judges net effect on the
+    risk landscape for the aid's own nation and for the wider environment. This is harder than it
+    sounds — the grader becomes the instrument and inherits every validity question the option
+    ladder currently carries — but it removes the confound rather than managing it.</p>
+    <p>It also enables measurement of what the current design cannot reach: open-ended ends
+    discovery, where the aid determines what is strategically salient rather than being told how
+    to weight factors. This requires an action space the aid can define.</p>
+
+    <h3>Multi-turn, multi-agent play</h3>
+    <p>Single-turn play cannot measure prior updating, and it cannot measure the taxonomy's
+    largest gap: whether an aid represents the adversary correctly, since there is no adversary
+    move to be right or wrong about. Multi-turn play with other machine or human participants
+    addresses both, at the cost of a combinatorial increase in runs and an adjudication problem
+    that AIDE 1.0 avoids by construction.</p>
+
+    <h3>Score the third circle</h3>
+    <p>The principal's utility function states two national-interest horizons and a personal
+    term. The score did not penalize a decision that achieves national objectives while degrading
+    the system every party operates in. That is a deliberate scope limit and a large gap in the
+    design of this benchmark.</p>
+    <p>Irreversible commitments are a mechanism by which single decisions can damage the shared
+    environment. AIDE 1.0 detects this behavior, but doesn't score the harm. A full design would
+    make this one aspect of a more robust system of measuring global welfare, so that an aid that
+    wins the crisis and loses the world will be marked as such. This design will require more
+    sophisticated scaffolding, including a stronger judge model.</p>
+
+    <h3>End state</h3>
+    <p>AIDE at full extent would be validated against human decisions.</p>
+    <p>A series of strategic wargames with matched player populations: one augmented and one
+    standard. Measure time to competence, adjudication drift, documentation fidelity, and whether
+    the augmented game's findings survive perturbation at a higher rate. That study answers the
+    question the benchmark can only approximate, and the benchmark is what tells you which models
+    are worth putting in front of people.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 02 -->
+<section id="broke" class="s2">
+  <div class="wrap">
+    <h2>Part 2 — What broke in AIDE 1.0</h2>
+    <p>Nine defects were found and recorded during construction and the run. Six of them were
+    silent-corruption paths: the pipeline completes, the files look normal, and the numbers are
+    wrong. These errors were not visible in the results. They required an explicit invariant
+    check to catch: a permutation assertion, a finish-reason histogram, a path-resolution test,
+    an empirical manipulation check.</p>
+
+    <div class="note">
+      <p>In a pipeline of this shape the dangerous failures do not raise errors. They produce
+      complete, plausible datasets. Anyone building one should assume a similar ratio and
+      instrument for it before spending money on a full run.</p>
+    </div>
+
+    <h3>The register</h3>
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th></th><th>Defect</th><th>What it would have corrupted</th><th>Transferable lesson</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><code>D-01</code></td><td>Two mapping rules in one item's key collided; a phased brief satisfied both</td><td>~40% of recommendation positions on the only well-calibrated item</td><td>Coding keys contain internal contradictions. Test the judge on one item before the full run.</td></tr>
+          <tr><td><code>D-02</code></td><td>Four judge fields saturated at 94–100% one value</td><td>Nothing directly; concealed a real 5.4× model difference</td><td>A field with no variance reports nothing. Scan variance on the first batch, not the last.</td></tr>
+          <tr><td><code>D-03</code></td><td>Salience text leaked the political factor into every disclosure cell</td><td>The sycophancy measure, which was reading instruction-following</td><td>Verify factor orthogonality empirically. Inspection missed it; a 50-point gap in existing data found it.</td></tr>
+          <tr><td><code>D-04</code></td><td>Corpus files overwritten with an older revision lacking the outcome scale</td><td>Everything. The pipeline could not start.</td><td>Corpus files need versioning. A permutation assertion catches structural loss, not prose edits.</td></tr>
+          <tr><td><code>D-05</code></td><td>Human briefs named <code>S01.md.md</code>; the condition silently skipped every run in project history</td><td>The human comparator was absent from all prior analysis</td><td>A silent skip is invisible. Assert that every expected condition produced data.</td></tr>
+          <tr><td><code>D-06</code></td><td>Token ceilings tuned for non-reasoning models; reasoning models returned empty or truncated</td><td>Empty briefs indistinguishable on disk from real ones</td><td><code>finish_reason='length'</code> is not an error. Reclassify truncation and empty text as non-persisted failures.</td></tr>
+          <tr><td><code>D-07</code></td><td>A refused brief crashed the job at run 569 of 760</td><td>Nothing, but it halted a paid run and the progress line still printed normally</td><td>A missing dependency should skip its dependents, not kill the process.</td></tr>
+          <tr><td><code>D-08</code></td><td>A content-filtered response was persisted; the parser's regex fallback would have scraped an index off the fragment</td><td>One agent run on the headline item, coded to 0.000</td><td>Any regex fallback over model output is a silent-corruption path.</td></tr>
+          <tr class="hl"><td><code>D-09</code></td><td>Two options authored to close observed gaps were chosen in 92% of runs</td><td>Both items, as measuring instruments</td><td>See below. Reproduced on two independent items.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:34px">Three that generalize</h3>
+
+    <h3>An option written from what the models asked for will be chosen by those models</h3>
+    <p>Off-ladder analysis found two structural holes. On the Taiwan item, models kept
+    recommending a public statement contesting the inspection authority without characterizing it
+    as a blockade; the ladder had the blockade characterization and silent force movement but
+    nothing between them. On the war-termination item, models kept recommending a counter-offer
+    against a ladder that forced accept-or-reject.</p>
+    <p>Both replacement options were authored from the judge's free-text records of what the
+    models had recommended. They closed the stated problem — off-ladder fell from 20.8% to 2.8%
+    and from 28.3% to zero. They were then selected in 92% of runs, collapsing every condition on
+    both items to a single value, including the deliberately vacuous brief and the human
+    brief.</p>
+    <p>The generalizable form: repairing a menu with the modal model recommendation manufactures
+    a dominant option and over-specifies the item. It reproduced across two scenario types and
+    two different rank placements.</p>
+    <p>The construction rule that implies: a replacement option must carry its cost in the prose
+    the principal reads, not in the reversibility note the principal never sees. The current
+    texts gesture at the cost only in the notes. Any inserted option should be gated on an
+    unaided-only pre-run before it enters the corpus.</p>
+
+    <h3>Orthogonality comes at a cost</h3>
+    <p>The principal's political exposure and whether the aid is told about it were designed to
+    be independent of each other. The guidance text given to the aid asserted in every cell that
+    the principal's political position was a real constraint — including the cell where the aid
+    was simultaneously told staff had not been briefed on that position. The contamination was
+    measured: 0 of 12 withheld briefs reasoned about political position at low salience against 6
+    of 12 at high salience, a 50-point gap which invalidated the measure the fork exists to
+    produce.</p>
+    <p>Repair required two iterations. The final text carries horizon compression through public
+    judgment instead, and no election, approval, tenure, or party language appears in the
+    differing paragraph. Briefs written under the leaky prompt were discarded and regenerated;
+    figures computed before the repair are void.</p>
+
+    <h3>A ceiling is not a broken item</h3>
+    <p>The calibration criterion as originally written rejects an item whose modal option share
+    exceeds roughly 60%. Applied to the run, the Korea item fails outright at 83.2%.</p>
+    <p>It also produced the largest single effect in the study. Unaided, the principal lands on
+    an irreversible option in 90% of runs. The human brief moves that to 15%. An item where
+    nothing moves is uninformative; an item with a demonstrated mover is a positive control. It
+    proves the item can register a brief effect, which is what makes a null from another
+    condition a real null rather than an insensitive instrument.</p>
+    <div class="note">
+      <p><strong>Corrected criterion:</strong> reject an item when no condition moves it.
+      Baseline concentration is not disqualifying, and one item pinned at each end is worth
+      having deliberately.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 03 -->
+<section id="falsify" class="s3">
+  <div class="wrap">
+    <h2>Part 3 — What would break this</h2>
+    <p>Each assumption below is paired with the observation that would falsify it. Where the
+    check is cheap and has not been run, that is stated.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>Assumption</th><th>What would falsify it</th><th>Status</th>
+        </tr></thead>
+        <tbody>
+          <tr class="hl"><td>The principal is an instrument, not a person, so its quirks cancel when conditions are differenced</td><td>The ranking of aid models changes under a second principal scaffold from a different model family</td><td>Untested. One item, one stronger principal, roughly 80 runs and under a dollar. The single most valuable outstanding check.</td></tr>
+          <tr class="hl"><td>Runs within a cell are independent</td><td>Nothing — they are not. Aid runs draw from k briefs, so the aid side is clustered and effective n is closer to k than to nominal</td><td>Known. Reported p-values on aid-side comparisons are optimistic. A mixed model with brief as a random effect is the correct analysis; the grouping keys are already in the data.</td></tr>
+          <tr><td>The escalation ranking is defensible</td><td>A specific pair dispute that reverses a headline result</td><td>Published per option with the reasoning, so it can be attacked at that level rather than as a method.</td></tr>
+          <tr><td>The scale orders commitment, not force</td><td>Rejecting the premise. Under a force-content reading the headline result inverts in label, because the seated models chose the option with no kinetic content</td><td>The result is robust; its label depends on the premise. Stated wherever the result appears.</td></tr>
+          <tr><td>The judge is not systematically biased</td><td>A second judge family disagreeing materially on the same briefs</td><td>Untested. One family, temperature zero, blind to authorship and condition. No inter-judge reliability.</td></tr>
+          <tr><td>The human comparator represents human staff work</td><td>Three independent authors, blind to the option ladders, producing a different effect</td><td>Known confound. One author, ladder knowledge, no inter-author variance. The largest effect in the study and the least controlled.</td></tr>
+          <tr><td>Reasoning-quality coding is reliable</td><td>Human hand-check below roughly 60% agreement</td><td>Partially open. Recommendation index reached 10/10; the sharpest discriminating field reached 70% against a second model, which is a ceiling estimate rather than a human check.</td></tr>
+          <tr><td>The corpus is not in training data</td><td>A model recognizing an item or reproducing its structure</td><td>Synthetic, undated, open sources only. No evidence of recognition. Not systematically probed.</td></tr>
+          <tr><td>Constructed items detect what matters</td><td>Nothing available. They detect what was built and nothing else</td><td>Structural, not fixable. Mitigated by publishing the taxonomy and coding rules so others can build different traps.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The first two changes I would make: the second principal scaffold, and refitting the
+    primary analyses as mixed models with brief as a random effect.</p>
+
+    <p>Defect records with detection method, fix, and residual risk are in the
+    <a href="https://github.com/georgehovey/AIDE">repository</a>, as is the pre-registration
+    committed before the full run.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>AIDE — AI-Informed Decision Evaluation. Submitted to the
+    <a href="https://www.chinatalk.media/p/25k-contest-evals-for-the-situation">ChinaTalk evals
+    contest</a>, 2026. Corpus, code, raw model responses, and pre-registration are in the
+    <a href="https://github.com/georgehovey/AIDE">repository</a>.</p>
+    <p>Scenarios are synthetic, built from open sources, and do not describe any actual plan,
+    operation, or assessment.</p>
+  </div>
+</footer>
+
+</body>
+</html>
