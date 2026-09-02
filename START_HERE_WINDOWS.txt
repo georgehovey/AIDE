@@ -1,0 +1,22 @@
+AIDE - Windows quick start
+==========================
+
+You do not need to know any coding. Just double-click three files in order.
+
+  1_SETUP.bat    Installs what Python needs. Run once.
+  2_TEST.bat     Free test with fake data. Confirms it works.
+  3_PILOT.bat    The real run. Asks for your API key. Costs a few dollars.
+
+Before step 3 you need an OpenRouter account:
+  - Go to https://openrouter.ai
+  - Sign up, add about $10 of credit
+  - Go to https://openrouter.ai/keys and create a key (starts with sk-or-)
+  - Copy it. 3_PILOT.bat will ask you to paste it.
+
+If a window flashes open and closes instantly, right-click the .bat file,
+choose Edit, and confirm the last line says "pause". If Windows warns you
+about running the file, click More info, then Run anyway.
+
+If anything fails, copy the text in the black window and send it to Claude.
+
+After 3_PILOT.bat finishes, send Claude the file ANALYSIS_OUTPUT.txt.

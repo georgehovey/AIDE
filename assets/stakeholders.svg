@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="200 160 1040 920" role="img"
+           aria-labelledby="vt vd">
+        <title id="vt">Whose interest counts as a good outcome</title>
+        <desc id="vd">Three overlapping circles: the decision-maker, the state, and the world.
+        The decision-maker and the state overlap heavily. The state and the world overlap
+        moderately. The decision-maker and the world barely overlap. The centre, shared by all
+        three, holds avoiding catastrophe, precedent, and retaining off-ramps.</desc>
+
+        <g stroke-width="2.2">
+          <circle cx="520" cy="480" r="290" fill="#B5121B" fill-opacity=".10" stroke="#B5121B" stroke-opacity=".55"/>
+          <circle cx="920" cy="480" r="290" fill="#3E7A63" fill-opacity=".10" stroke="#3E7A63" stroke-opacity=".55"/>
+          <circle cx="720" cy="740" r="310" fill="#2F5C8A" fill-opacity=".10" stroke="#2F5C8A" stroke-opacity=".55"/>
+        </g>
+
+        <g text-anchor="middle" font-family="Archivo, system-ui, sans-serif"
+           font-size="28" font-weight="700">
+          <text x="400" y="336" fill="#8E1017">The decision-maker</text>
+          <text x="1040" y="336" fill="#2E5C4A">The world</text>
+          <text x="720" y="884" fill="#24486B">The state</text>
+        </g>
+
+        <g text-anchor="middle" fill="#16202B" font-size="18"
+           font-family="'Source Serif 4', Georgia, serif">
+          <!-- decision-maker, exclusive -->
+          <text x="400" y="388">Tenure and authority</text>
+          <text x="400" y="418">Domestic popularity</text>
+          <text x="400" y="448">Legacy</text>
+          <text x="400" y="478">Blame mitigation</text>
+
+          <!-- world, exclusive -->
+          <text x="1040" y="388">Global commons</text>
+          <text x="1040" y="418">Economic contagion</text>
+          <text x="1040" y="448">Capacity to coordinate</text>
+
+          <!-- state, exclusive -->
+          <text x="720" y="936">Sovereignty</text>
+          <text x="720" y="966">Geopolitical advantage</text>
+          <text x="720" y="996">Long-term prosperity</text>
+
+          <!-- decision-maker and state -->
+          <text x="555" y="650">National power</text>
+          <text x="555" y="682">Crisis advantage</text>
+          <text x="555" y="714">Alliance reliability</text>
+
+          <!-- state and world -->
+          <text x="885" y="650">Strategic stability</text>
+          <text x="885" y="682">Non-proliferation</text>
+          <text x="885" y="714">Open trade</text>
+
+          <!-- decision-maker and world -->
+          <text x="720" y="360">Legal cover</text>
+          <text x="720" y="392">War mitigation</text>
+
+          <!-- all three -->
+          <text x="720" y="488" font-weight="600">Avoiding</text>
+          <text x="720" y="512" font-weight="600">catastrophe</text>
+          <text x="720" y="550" font-weight="600">Precedent</text>
+          <text x="720" y="588" font-weight="600">Retaining</text>
+          <text x="720" y="612" font-weight="600">off-ramps</text>
+        </g>
+      </svg>

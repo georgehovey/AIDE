@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIDE — measure the aid, not the agent</title>
+<meta name="description" content="AIDE measures how AI models used to support strategic decision-making change the decision, rather than what they do when they hold the seat themselves.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="mark" href="index.html">AIDE <span>AI-Informed Decision Evaluation</span></a>
+    <nav>
+      <a href="index.html" aria-current="page">Why the aid</a>
+      <a href="instrument.html">The instrument</a>
+      <a href="results.html">What it found</a>
+      <a href="limits.html">What broke</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">ChinaTalk evals contest · 2026</p>
+    <h1>Measure the aid,<br>not the agent.</h1>
+    <p class="lede">AIDE measures how AI models used to support strategic decision-making
+    change the decision.</p>
+  </div>
+</div>
+
+<div class="jump">
+  <div class="wrap">
+    <a href="#why"><i>01</i> Why measure the aid</a>
+    <a href="#taxonomy"><i>02</i> Taxonomy of a decision aid</a>
+    <a href="#what-to-measure"><i>03</i> What to measure</a>
+    <a href="#encodes"><i>04</i> What AIDE encodes</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ 01 -->
+<section id="why" class="s1">
+  <div class="wrap">
+    <h2>Why measure the aid?</h2>
+
+    <h3>Positioning against prior work</h3>
+    <p>The focus on evaluating AI models in national security decision-making has primarily
+    been on putting the model in the decision-maker's seat and asking it to optimize for finite
+    objectives. <a href="https://arxiv.org/abs/2401.03408">Rivera et al.</a> measures propensity,
+    the <a href="https://www.csis.org/programs/futures-lab/projects/critical-foreign-policy-decisions-benchmark">CFPD
+    benchmark</a> is multiple choice, <a href="https://github.com/agiresearch/WarAgent">WarAgent</a>
+    and <a href="https://arxiv.org/abs/2604.07733">CivBench</a> are model-vs-model, and
+    <a href="https://taiwanbench-site.vercel.app/">TaiwanBench</a> is single-seat agent play.</p>
+
+    <p>These tools measure a job AI models do not currently have and are unlikely to have in
+    the foreseeable future. Every known national leader is the final decision-maker and may use
+    various aids to support high-stakes decisions, but will not put an AI model in charge of
+    making those decisions.</p>
+
+    <p>AIDE inverts this by testing models in the job they will actually hold: decision support.
+    By evaluating the model as one half of a principal-and-aid dyad, AIDE measures the marginal
+    effect of the model on the choice — which turns out not to be predictable from how the same
+    model behaves when it holds the seat itself.</p>
+
+    <p>It does this through several mechanisms. The same models are run through four distinct
+    scenarios, so that the aids rather than the scenario are what is being judged. Every option
+    in every scenario is coded on four axes, so it is possible to say where the aids diverge and
+    on what. And the decision-maker is held fixed, so the only thing varying is the staff work
+    it reads.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ 02 -->
+<section id="taxonomy" class="s2">
+  <div class="wrap">
+    <h2>Taxonomy of a decision aid</h2>
+    <p class="sec-lede">"Decision aid" is not one job. A staff element performs several
+    functions for a principal, and a model in that role inherits any or all of them. Evaluations
+    that measure the model as the decider are not structured to discern how any of these are
+    performed.</p>
+
+    <ol class="fn">
+      <li>
+        <h3>Framing</h3>
+        <p>What is this decision about? What are the consequences for the larger strategic
+        picture? What information is relevant and what is noise? What time horizon applies?
+        Framing is the most consequential function, because a wrong frame corrupts every other
+        one, and the most overlooked, because it exists only as background to the other outputs.</p>
+        <p class="covline"><span class="cov yes">Measured</span>Whether the brief engages the
+        scenario's binding uncertainty, whether the recommendation would have been the same had
+        that uncertainty already resolved, and which of the principal's stated value sets the
+        brief reasons about.</p>
+      </li>
+
+      <li>
+        <h3>Supplying facts</h3>
+        <p>Curating information and supplying it to the principal.</p>
+        <p class="covline"><span class="cov const">Held constant</span>The aid receives the same
+        packet and the same constraints as the principal, which isolates the other seven
+        functions. The cost is that AIDE says nothing about what happens when the aid knows more
+        than the principal, which is the real-world case and belongs in a later version.</p>
+      </li>
+
+      <li>
+        <h3>Analysis</h3>
+        <p>Understanding the nation's strategy and objectives and evaluating the ways of
+        achieving them. Red-teaming the adversary to understand its position and likely next
+        move. Building a decision calculus that models the adversary's reasoning.</p>
+        <p class="covline"><span class="cov part">Measured weakly</span>Aids were given no
+        explicit instruction to perform these steps, but sometimes incorporated them into their
+        assessment and their courses of action.</p>
+      </li>
+
+      <li>
+        <h3>Generating options</h3>
+        <p>Constructing the set of actions the principal will choose from. In practice the staff
+        presents a list of courses of action and a decision-maker rarely picks from outside it,
+        though with enough time a principal may send the staff back for alternate versions.</p>
+        <p class="covline"><span class="cov yes">Measured</span>The aid never sees the
+        principal's enumerated ladder, so the list of options it presents is one it built
+        itself. Aids present 44 percent of the options the principal will be shown.</p>
+      </li>
+
+      <li>
+        <h3>Assessing options</h3>
+        <p>What each course costs, what risks it carries, and what it forecloses.</p>
+        <p class="covline"><span class="cov part">Measured weakly</span>The brief's assessment
+        is coded for whether it engaged reversibility and uncertainty. The behavioural
+        consequence is measured well, by what the principal then chooses.</p>
+      </li>
+
+      <li>
+        <h3>Representing the adversary</h3>
+        <p>What the other side does next, and why. Central to red-teaming and to assessing any
+        course of action.</p>
+        <p class="covline"><span class="cov no">Not measured</span>A single-turn design gives
+        the adversary no move to be right or wrong about. It should show up inside option
+        generation and assessment, but no explicit instruction was given to the aids. This is
+        the largest unmeasured function in the taxonomy.</p>
+      </li>
+
+      <li>
+        <h3>Recommending</h3>
+        <p>Advocating one course, with backing reasons.</p>
+        <p class="covline"><span class="cov yes">Measured</span>Where the recommendation sits on
+        the scenario's escalation ranking, and whether the principal follows it. Compliance runs
+        at 59.6 percent.</p>
+      </li>
+
+      <li>
+        <h3>Challenging</h3>
+        <p>The function human staff most often fail at, or lose their job for succeeding at.
+        Telling the principal something unwelcome. Declining to build the case for a decision
+        already made. Not optimizing for the principal's interest over the nation's.</p>
+        <p class="covline"><span class="cov part">Partially measured</span>The disclosure fork
+        withholds the principal's political position from half the cells, so a brief that
+        reasons about it anyway volunteered it. Rates range from 0 to 50 percent across models.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ 03 -->
+<section id="what-to-measure" class="s3">
+  <div class="wrap">
+    <h2>What to measure</h2>
+    <p class="sec-lede">Any evaluation of a decision aid has to assign values to what factors in
+    outcomes qualify as desirable. Here is a depiction of three levels of stakeholders, what they
+    value from the outcome of the decision, and where they overlap.</p>
+
+    <figure class="venn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="200 160 1040 920" role="img"
+           aria-labelledby="vt vd">
+        <title id="vt">Whose interest counts as a good outcome</title>
+        <desc id="vd">Three overlapping circles: the decision-maker, the state, and the world.
+        The decision-maker and the state overlap heavily. The state and the world overlap
+        moderately. The decision-maker and the world barely overlap. The centre, shared by all
+        three, holds avoiding catastrophe, precedent, and retaining off-ramps.</desc>
+
+        <g stroke-width="2.2">
+          <circle cx="520" cy="480" r="290" fill="#B5121B" fill-opacity=".10" stroke="#B5121B" stroke-opacity=".55"/>
+          <circle cx="920" cy="480" r="290" fill="#3E7A63" fill-opacity=".10" stroke="#3E7A63" stroke-opacity=".55"/>
+          <circle cx="720" cy="740" r="310" fill="#2F5C8A" fill-opacity=".10" stroke="#2F5C8A" stroke-opacity=".55"/>
+        </g>
+
+        <g text-anchor="middle" font-family="Archivo, system-ui, sans-serif"
+           font-size="28" font-weight="700">
+          <text x="400" y="336" fill="#8E1017">The decision-maker</text>
+          <text x="1040" y="336" fill="#2E5C4A">The world</text>
+          <text x="720" y="884" fill="#24486B">The state</text>
+        </g>
+
+        <g text-anchor="middle" fill="#16202B" font-size="18"
+           font-family="'Source Serif 4', Georgia, serif">
+          <!-- decision-maker, exclusive -->
+          <text x="400" y="388">Tenure and authority</text>
+          <text x="400" y="418">Domestic popularity</text>
+          <text x="400" y="448">Legacy</text>
+          <text x="400" y="478">Blame mitigation</text>
+
+          <!-- world, exclusive -->
+          <text x="1040" y="388">Global commons</text>
+          <text x="1040" y="418">Economic contagion</text>
+          <text x="1040" y="448">Capacity to coordinate</text>
+
+          <!-- state, exclusive -->
+          <text x="720" y="936">Sovereignty</text>
+          <text x="720" y="966">Geopolitical advantage</text>
+          <text x="720" y="996">Long-term prosperity</text>
+
+          <!-- decision-maker and state -->
+          <text x="555" y="650">National power</text>
+          <text x="555" y="682">Crisis advantage</text>
+          <text x="555" y="714">Alliance reliability</text>
+
+          <!-- state and world -->
+          <text x="885" y="650">Strategic stability</text>
+          <text x="885" y="682">Non-proliferation</text>
+          <text x="885" y="714">Open trade</text>
+
+          <!-- decision-maker and world -->
+          <text x="720" y="360">Legal cover</text>
+          <text x="720" y="392">War mitigation</text>
+
+          <!-- all three -->
+          <text x="720" y="488" font-weight="600">Avoiding</text>
+          <text x="720" y="512" font-weight="600">catastrophe</text>
+          <text x="720" y="550" font-weight="600">Precedent</text>
+          <text x="720" y="588" font-weight="600">Retaining</text>
+          <text x="720" y="612" font-weight="600">off-ramps</text>
+        </g>
+      </svg>
+      <figcaption>Whose interest counts as a good outcome</figcaption>
+    </figure>
+
+    <div class="grid2">
+      <div>
+        <h3>The principal</h3>
+        <p>The decision-maker's interest generally aligns with their state's, plus their own
+        position. Election proximity, approval, standing public commitments, and the audience
+        cost of visible reversal all factor into their utility function. In our current system,
+        ignoring this consideration produces staff work nobody uses.</p>
+      </div>
+      <div>
+        <h3>The state</h3>
+        <p>National interest across two horizons that frequently conflict. Crisis-horizon:
+        deterrence credibility, precedent, catastrophic-branch risk, casualties, freedom of
+        action retained. Long-horizon: economic capacity, force posture, industrial and
+        technological base, alliance depth, institutional standing, domestic cohesion. No single
+        crisis moves the second measurably. Patterns of crises do.</p>
+      </div>
+      <div>
+        <h3>Everyone <em>(not depicted)</em></h3>
+        <p>Outcomes bad for all parties, regardless of who prevails. Inadvertent escalation,
+        threshold erosion, and precedents that make the next crisis worse for whoever faces it.
+        Commitments that cannot be walked back once the situation changes.</p>
+      </div>
+      <div>
+        <h3>The overlaps</h3>
+        <p>Almost everything a decision-maker acts on sits in the large lens shared with the
+        state. The state and the world share the conditions that are mutual or nothing —
+        strategic stability cannot be held unilaterally, and neither can non-proliferation or
+        open trade.</p>
+        <p>The decision-maker's overlap with the world is thin, and most of what reaches an
+        individual from the wider system reaches them through the state. The two values that
+        arrive directly do so for reasons independent of the world's interest in them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ 04 -->
+<section id="encodes" class="s1">
+  <div class="wrap">
+    <h2>What AIDE encodes</h2>
+    <p>AIDE assumes realism: the aid is directly or indirectly controlled by the decision-maker.
+    The principal's utility statement therefore carries all three of its terms explicitly, with
+    weights — crisis-horizon national interest, long-horizon national power, and personal
+    political position, the last at 0.20 or 0.35 depending on political salience. The aid
+    receives the same priorities as prose commander's intent and no weights at all, so how much
+    it decides each matters is a measured variable rather than an instruction.</p>
+
+    <h3>The world, also known as the common good</h3>
+    <p>AIDE's principal's utility function does not penalize a decision that achieves national
+    objectives while degrading the system everyone operates in. That is a deliberate choice,
+    meant to reflect the fact that the principal chooses the aid based on their own interests
+    and not on what is best for the parties who do not get to choose.</p>
+
+    <p>Whether that omission should be corrected is a question about how societies govern these
+    systems, and it can only be answered at the level of the system rather than inside the agent.
+    What an evaluation can do is report the cost separately, which is
+    <a href="limits.html#full-design">taken up in the full design</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>AIDE — AI-Informed Decision Evaluation. Submitted to the
+    <a href="https://www.chinatalk.media/p/25k-contest-evals-for-the-situation">ChinaTalk evals
+    contest</a>, 2026. Corpus, code, raw model responses, and pre-registration are in the
+    <a href="https://github.com/georgehovey/AIDE">repository</a>.</p>
+    <p>Scenarios are synthetic, built from open sources, and do not describe any actual plan,
+    operation, or assessment.</p>
+  </div>
+</footer>
+
+</body>
+</html>

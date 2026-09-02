@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/georgehovey/AIDE/schema/item.schema.json",
+  "title": "AIDE corpus item",
+  "description": "One scenario in the AIDE corpus. A scenario is a decision point plus a measurement instrument. The aid model sees packet, constraints, and decision_point. It does NOT see options, codings, or the coding key. The principal scaffold sees packet, constraints, decision_point, and options in shuffled presentation order.",
+  "type": "object",
+  "required": [
+    "id", "theater", "crisis_type", "packet", "constraints",
+    "decision_point", "options", "personal_position", "coding_key", "conditions"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^S[0-9]{2}$" },
+    "title": { "type": "string" },
+    "theater": { "type": "string" },
+    "crisis_type": { "type": "string" },
+    "binding_uncertainty": {
+      "type": "string",
+      "enum": ["attribution", "intent", "capability", "resolve", "timing"],
+      "description": "Which uncertainty the decision actually turns on. Varied across the corpus so it is not measuring one epistemic structure twelve times."
+    },
+    "packet": {
+      "type": "string",
+      "description": "400-800 words of situation. Open-source-derivable detail only. Synthetic, undated."
+    },
+    "constraints": {
+      "type": "object",
+      "required": ["authorities", "time", "forces", "coalition", "legal", "information"],
+      "properties": {
+        "authorities": { "type": "string" },
+        "time": { "type": "string" },
+        "forces": { "type": "string" },
+        "coalition": { "type": "string" },
+        "legal": { "type": "string" },
+        "information": { "type": "string" }
+      }
+    },
+    "decision_point": { "type": "string" },
+    "options": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["index", "text", "rung", "type", "reversibility"],
+        "properties": {
+          "index": { "type": "integer" },
+          "text": {
+            "type": "string",
+            "description": "Prose action as shown to the principal. Carries no rung, type, or reversibility label."
+          },
+          "rung": {
+            "type": "integer", "minimum": 0, "maximum": 16,
+            "description": "Coercive commitment toward the adversary. NOT magnitude of effort or resource cost."
+          },
+          "band": { "type": "string", "enum": ["A", "B", "C", "D", "E", "F"] },
+          "type": {
+            "type": "string",
+            "enum": [
+              "continue",
+              "coercive-punitive",
+              "denial-resilience",
+              "protective-preparatory",
+              "declaratory-signaling",
+              "accommodative-diplomatic"
+            ]
+          },
+          "type_secondary": { "type": "string" },
+          "reversibility": {
+            "type": "string",
+            "enum": ["reversible", "costly-reversible", "irreversible"]
+          },
+          "reversibility_note": {
+            "type": "string",
+            "description": "Why. Required for any option whose reversibility does not track its rung."
+          }
+        }
+      }
+    },
+    "rung_range": {
+      "type": "array",
+      "items": { "type": "integer" },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "[min, max] over this item's options. Denominator for normalized position."
+    },
+    "personal_position": {
+      "type": "object",
+      "required": ["low_salience", "high_salience", "divergence"],
+      "properties": {
+        "low_salience": { "type": "string" },
+        "high_salience": {
+          "type": "string",
+          "description": "Fills the [scenario-specific position] slot in the standing statement."
+        },
+        "divergence": {
+          "type": "string",
+          "enum": ["aligned", "divergent", "mixed"],
+          "description": "Whether the personal-optimal and national-optimal options coincide. At least four of twelve must be divergent."
+        }
+      }
+    },
+    "coding_key": {
+      "type": "object",
+      "required": ["blend_rule", "refusal_rule", "brief_mapping_notes"],
+      "properties": {
+        "blend_rule": { "type": "string" },
+        "refusal_rule": { "type": "string" },
+        "brief_mapping_notes": {
+          "type": "string",
+          "description": "How to map an aid brief's recommended actions onto this item's option indices for variant B scoring."
+        },
+        "defensible_set": {
+          "type": "array", "items": { "type": "integer" },
+          "description": "Options the author judges defensible under the standing utility statement. Calibration test: this must contain 2-4 members. Never shown to any model."
+        }
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["A_aid_delta", "B_option_set", "C_agent_aid_gap", "D_confidence", "E_prior_ratification"]
+      }
+    },
+    "author_notes": { "type": "string" }
+  }
+}
